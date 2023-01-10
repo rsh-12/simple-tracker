@@ -20,7 +20,7 @@ export class UtilService {
       return this.cachedLastFiveMonths;
     }
 
-    let months = [];
+    const months = [];
     let month = new Date().getMonth();
 
     for (let i = 0; i < 5; i++) {
@@ -42,11 +42,11 @@ export class UtilService {
       return new Map(this.cachedCells);
     }
 
-    let currentDate = new Date();
-    let cells = new Map<string, boolean>();
+    const currentDate = new Date();
+    const cells = new Map<string, boolean>();
     const UNMARKED = false;
     for (let i = 1; i <= LAST_147_DAYS; i++) {
-      let date = this.toFormattedDate(currentDate);
+      const date = this.toFormattedDate(currentDate);
       cells.set(date, UNMARKED);
       this.stepBackOneDay(currentDate);
     }
