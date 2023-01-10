@@ -15,7 +15,7 @@ export const environment = {
     measurementId: "G-VE8MYLFDLW"
   },
   collections: {
-    habits: '/cards'
+    habits: '/habits'
   }
 
 };
