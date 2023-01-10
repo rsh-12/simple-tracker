@@ -1,0 +1,115 @@
+.card {
+  border: none;
+  box-shadow: 5px 5px 20px rgb(233, 232, 232);
+  background-color: #ffffff;
+  width: 300px;
+  height: 250px;
+  border-radius: 15px;
+  padding: 30px;
+}
+
+
+.days {
+  border: 1px solid #f1f1f1;
+  border-radius: 1px;
+  width: 252px;
+  height: 84px;
+  padding: 1px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 0 auto;
+}
+
+li {
+  list-style: none;
+}
+
+.day_marked {
+  background-color: green;
+  width: 10px;
+  height: 10px;
+  margin: 1px;
+}
+
+.day_unmarked {
+  background-color: rgb(226, 223, 223);
+  width: 10px;
+  height: 10px;
+  margin: 1px;
+}
+
+.months {
+  width: 264px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+  margin: 0 auto;
+}
+
+.month {
+  width: 52px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 400;
+  color: #666565;
+}
+
+.sheet {
+  margin: 0 auto;
+}
+
+.card_head {
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+.card_top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card_head_left {
+  display: flex;
+}
+
+.card_head_right {
+  display: flex;
+}
+
+.card_stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px auto 20px auto;
+
+}
+
+.total_checkins,
+.stickiness {
+  text-align: center;
+  width: 200px;
+}
+
+.card_stats {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 30px;
+}
+
+.card_description {
+  color: #666565;
+  font-size: 12px;
+}
+
+.total_checkins_value,
+.stickiness_value {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.total_checkins_title,
+.stickiness_title {
+  font-size: 10px;
+  color: #666565;
+}
