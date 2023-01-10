@@ -14,6 +14,10 @@ export const environment = {
     appId: "1:1010700562331:web:d49ae1e9a28a79e9fdfb3e",
     measurementId: "G-VE8MYLFDLW"
   },
+  collections: {
+    habits: '/cards'
+  }
+
 };
 
 /*
