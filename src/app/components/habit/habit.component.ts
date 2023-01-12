@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Habit } from "../../models/habit";
 import { UtilService } from "../../services/util.service";
 
@@ -9,6 +9,7 @@ import { UtilService } from "../../services/util.service";
 })
 export class HabitComponent implements OnInit {
   @Input() habit!: Habit;
+  @Output() habitDeleted = new EventEmitter<Habit>();
 
   months: string[];
   cells: Map<string, boolean>;
@@ -24,6 +25,13 @@ export class HabitComponent implements OnInit {
 
   private fillCells() {
     this.habit.markedDays?.forEach(markedDay => this.cells.set(markedDay, true));
+  }
+
+  delete($event: MouseEvent, habit: Habit) {
+    if (!habit.key) {
+      return;
+    }
+    this.habitDeleted.emit(habit);
   }
 
 }

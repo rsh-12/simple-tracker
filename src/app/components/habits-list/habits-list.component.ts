@@ -14,4 +14,12 @@ export class HabitsListComponent {
     this.habits = habitService.getAll();
   }
 
+  onHabitDelete(candidate: Habit) {
+    if (!candidate.key) {
+      return;
+    }
+    this.habitService.deleteByKey(candidate.key);
+    this.habits = this.habits.filter(habit => habit.key !== candidate.key);
+  }
+
 }

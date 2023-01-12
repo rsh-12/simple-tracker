@@ -31,4 +31,8 @@ export class MockHabitService {
   getAll(): Habit[] {
     return this.habits;
   }
+
+  deleteByKey(key: string) {
+    this.habits.filter(habit => habit.key != key);
+  }
 }
