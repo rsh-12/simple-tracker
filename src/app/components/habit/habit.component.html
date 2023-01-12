@@ -5,7 +5,11 @@
       <div class="card_menu">
         <mat-icon [mat-menu-trigger-for]="menu">more_vert</mat-icon>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>Add record</button>
+          <button mat-menu-item (click)="picker.open()">
+            Add record
+            <input matInput [(ngModel)]="date" [matDatepicker]="picker" name="date">
+            <mat-datepicker  #picker (closed)="onDatePickerClose()"></mat-datepicker>
+          </button>
           <button mat-menu-item (click)="delete($event, habit)">Delete card</button>
         </mat-menu>
       </div>

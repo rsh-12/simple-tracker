@@ -35,4 +35,8 @@ export class MockHabitService {
   deleteByKey(key: string) {
     this.habits.filter(habit => habit.key != key);
   }
+
+  update(habit: Habit) {
+    console.log(`Save changes: ${habit.key}`)
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Habit } from "../../models/habit";
 import { UtilService } from "../../services/util.service";
+import { MockHabitService } from "../../services/mock-habit.service";
 
 @Component({
   selector: 'app-habit',
@@ -13,8 +14,9 @@ export class HabitComponent implements OnInit {
 
   months: string[];
   cells: Map<string, boolean>;
+  date?: Date;
 
-  constructor() {
+  constructor(private habitService: MockHabitService) {
     this.months = UtilService.lastFiveMonths();
     this.cells = UtilService.emptyCells();
   }
@@ -34,4 +36,20 @@ export class HabitComponent implements OnInit {
     this.habitDeleted.emit(habit);
   }
 
+  onDatePickerClose() {
+    if (!this.date || this.date > new Date()) {
+      return;
+    }
+
+    const confirmed = confirm(`Are you sure you want to mark this day: ${this.date.toLocaleDateString()}?`);
+    if (!confirmed) {
+      return;
+    }
+
+    const localDate = new Date(this.date + " UTC");
+    const formattedDate = UtilService.toFormattedDate(localDate);
+    this.habit.markedDays?.add(formattedDate);
+    this.cells.set(formattedDate, true);
+    this.habitService.update(this.habit);
+  }
 }

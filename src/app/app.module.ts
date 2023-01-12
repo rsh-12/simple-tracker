@@ -10,6 +10,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from "@angular/material/icon";
 import { MatMenuModule } from "@angular/material/menu";
 import { HabitComponent } from './components/habit/habit.component';
+import { MatNativeDateModule } from "@angular/material/core";
+import { FormsModule } from "@angular/forms";
+import { MatInputModule } from "@angular/material/input";
+import { MatDatepickerModule } from "@angular/material/datepicker";
 
 @NgModule({
   declarations: [
@@ -23,9 +27,15 @@ import { HabitComponent } from './components/habit/habit.component';
     AngularFireDatabaseModule,
     BrowserAnimationsModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    MatInputModule,
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
-  providers: [],
+  providers: [
+    {provide: MatNativeDateModule, useValue: {useUtc: true}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
