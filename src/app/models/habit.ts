@@ -2,5 +2,5 @@ export class Habit {
   key?: string;
   title?: string;
   description?: string;
-  markedDays?: Set<string>;
+  markedDays: Set<string> = new Set<string>();
 }
