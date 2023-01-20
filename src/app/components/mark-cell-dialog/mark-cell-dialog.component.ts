@@ -3,7 +3,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Habit } from "../../models/habit";
 import { KeyValue } from "@angular/common";
 import { UtilService } from "../../services/util.service";
-import { MatSnackBar } from "@angular/material/snack-bar";
 
 interface Data {
   cell: KeyValue<string, boolean>,
