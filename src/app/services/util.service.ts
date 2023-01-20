@@ -59,6 +59,11 @@ export class UtilService {
     return date.toISOString().slice(0, 10);
   }
 
+  static toFormattedUTCDate(date: Date) {
+    const localDate = new Date(date + " UTC");
+    return this.toFormattedDate(localDate);
+  }
+
   private static stepBackOneDay(currentDate: Date) {
     currentDate.setDate(currentDate.getDate() - 1);
   }
