@@ -5,34 +5,29 @@
       <div class="card_menu">
         <mat-icon [mat-menu-trigger-for]="menu">more_vert</mat-icon>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="picker.open()">
-            Add record
-            <input matInput [(ngModel)]="date" [matDatepicker]="picker" name="date">
-            <mat-datepicker  #picker (closed)="onDatePickerClose()"></mat-datepicker>
-          </button>
           <button mat-menu-item (click)="delete($event, habit)">Delete card</button>
         </mat-menu>
       </div>
 
       <div class="card_head">
         <div class="card_title">{{habit.title}}</div>
-        <div class="card_description">{{habit.description | slice:0:40}}...</div>
+        <div class="card_description">{{habit.description}}</div>
       </div>
     </div>
     <div class="card_head_right">
       <div class="marker">
-        <input #status type="checkbox" name="marker" id="marker">
+        <input type="checkbox" name="marker" id="marker">
       </div>
     </div>
   </div>
 
   <div class="card_stats">
     <div class="total_checkins">
-      <div class="total_checkins_value">{{habit.markedDays?.size || 0}}</div>
+      <div class="total_checkins_value">{{habit.markedDays.size}}</div>
       <div class="total_checkins_title">Total checkins</div>
     </div>
     <div class="stickiness">
-      <div class="stickiness_value">10%</div>
+      <div class="stickiness_value">0%</div>
       <div class="stickiness_title">Stickiness</div>
     </div>
   </div>
@@ -45,9 +40,13 @@
 
       <ul class="days">
         <li *ngFor="let cell of cells | keyvalue">
-          <div [class]="cell.value ? 'day_marked' : 'day_unmarked'" [title]="cell.key"></div>
+          <div [class]="cell.value ? 'day_marked' : 'day_unmarked'" [title]="cell.key"
+               (click)="onCellClicked($event, cell)"></div>
         </li>
       </ul>
+      <div class="hint">
+        Click on the cell to mark/unmark the date
+      </div>
     </div>
   </div>
 

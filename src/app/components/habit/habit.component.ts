@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Habit } from "../../models/habit";
 import { UtilService } from "../../services/util.service";
-import { MockHabitService } from "../../services/mock-habit.service";
+import { KeyValue } from "@angular/common";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { MarkCellDialogComponent } from "../mark-cell-dialog/mark-cell-dialog.component";
 
 @Component({
   selector: 'app-habit',
@@ -16,7 +18,7 @@ export class HabitComponent implements OnInit {
   cells: Map<string, boolean>;
   date?: Date;
 
-  constructor(private habitService: MockHabitService) {
+  constructor(public dialogRef: MatDialog) {
     this.months = UtilService.lastFiveMonths();
     this.cells = UtilService.emptyCells();
   }
@@ -26,7 +28,7 @@ export class HabitComponent implements OnInit {
   }
 
   private fillCells() {
-    this.habit.markedDays?.forEach(markedDay => this.cells.set(markedDay, true));
+    this.habit.markedDays.forEach(markedDay => this.cells.set(markedDay, true));
   }
 
   delete($event: MouseEvent, habit: Habit) {
@@ -36,20 +38,23 @@ export class HabitComponent implements OnInit {
     this.habitDeleted.emit(habit);
   }
 
-  onDatePickerClose() {
-    if (!this.date || this.date > new Date()) {
-      return;
-    }
+  onCellClicked($event: MouseEvent, cell: KeyValue<string, boolean>) {
+    const dialogRef = this.handleDialogOpenEvent(cell);
+    this.handleDialogCloseEvent(dialogRef);
+  }
 
-    const confirmed = confirm(`Are you sure you want to mark this day: ${this.date.toLocaleDateString()}?`);
-    if (!confirmed) {
-      return;
-    }
+  private handleDialogOpenEvent(cell: KeyValue<string, boolean>) {
+    return this.dialogRef.open(MarkCellDialogComponent, {
+        data: {cell, habit: this.habit}
+      }
+    );
+  }
 
-    const localDate = new Date(this.date + " UTC");
-    const formattedDate = UtilService.toFormattedDate(localDate);
-    this.habit.markedDays?.add(formattedDate);
-    this.cells.set(formattedDate, true);
-    this.habitService.update(this.habit);
+  private handleDialogCloseEvent(dialogRef: MatDialogRef<MarkCellDialogComponent, any>) {
+    dialogRef.afterClosed().subscribe(result => {
+      if (result instanceof Date) {
+        UtilService.toFormattedUTCDate(result);
+      }
+    });
   }
 }
