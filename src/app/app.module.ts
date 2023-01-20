@@ -10,16 +10,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from "@angular/material/icon";
 import { MatMenuModule } from "@angular/material/menu";
 import { HabitComponent } from './components/habit/habit.component';
-import { MatNativeDateModule } from "@angular/material/core";
+import { MAT_DATE_LOCALE, MatNativeDateModule } from "@angular/material/core";
 import { FormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MarkCellDialogComponent } from './components/mark-cell-dialog/mark-cell-dialog.component';
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatButtonModule } from "@angular/material/button";
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
     AppComponent,
     HabitsListComponent,
-    HabitComponent
+    HabitComponent,
+    MarkCellDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +37,14 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
     FormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatSnackBarModule,
   ],
   providers: [
-    {provide: MatNativeDateModule, useValue: {useUtc: true}}
+    {provide: MatNativeDateModule, useValue: {useUtc: true}},
+    {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}
   ],
   bootstrap: [AppComponent]
 })
