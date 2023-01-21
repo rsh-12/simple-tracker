@@ -1,13 +1,13 @@
-* {
-  background-color: #f1f1f1;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 50px;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  align-content: space-around;
+.card {
+  margin: 20px;
 }
