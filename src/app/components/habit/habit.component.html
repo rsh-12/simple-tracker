@@ -11,7 +11,11 @@
 
       <div class="card_head">
         <div class="card_title">{{habit.title}}</div>
-        <div class="card_description">{{habit.description}}</div>
+        <div *ngIf="(habit.description?.length || 0) > 80" class="card_description"
+             [title]="habit.description">{{habit.description | slice:0:80}}...
+        </div>
+        <div *ngIf="(habit.description?.length || 0) <= 80" class="card_description"
+             [title]="habit.description">{{habit.description}}</div>
       </div>
     </div>
     <div class="card_head_right">
