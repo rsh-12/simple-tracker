@@ -1,33 +1,38 @@
-<div class="card">
+<div class="card" [class]="isCurrentDateMarked() ? 'checked':''">
   <div class="card_top">
     <div class="card_head_left">
 
       <div class="card_menu">
-        <mat-icon [mat-menu-trigger-for]="menu">more_vert</mat-icon>
+        <mat-icon [mat-menu-trigger-for]="menu" color="primary">more_vert</mat-icon>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="delete($event, habit)">Delete card</button>
+          <button mat-menu-item (click)="delete($event, currentHabit)">Delete</button>
+          <button mat-menu-item>Hide</button>
         </mat-menu>
       </div>
 
       <div class="card_head">
-        <div class="card_title">{{habit.title}}</div>
-        <div *ngIf="(habit.description?.length || 0) > 80" class="card_description"
-             [title]="habit.description">{{habit.description | slice:0:80}}...
+        <div class="card_title">{{currentHabit.title}}</div>
+        <div *ngIf="(currentHabit.description?.length || 0) > 80" class="card_description"
+             [title]="currentHabit.description">{{currentHabit.description | slice:0:80}}...
         </div>
-        <div *ngIf="(habit.description?.length || 0) <= 80" class="card_description"
-             [title]="habit.description">{{habit.description}}</div>
+        <div *ngIf="(currentHabit.description?.length || 0) <= 80" class="card_description"
+             [title]="currentHabit.description">{{currentHabit.description}}</div>
       </div>
     </div>
     <div class="card_head_right">
       <div class="marker">
-        <input type="checkbox" name="marker" id="marker">
+        <mat-checkbox
+          color="primary"
+          [checked]="isCurrentDateMarked()"
+          (change)="onCheckboxChange($event.checked)">
+        </mat-checkbox>
       </div>
     </div>
   </div>
 
   <div class="card_stats">
     <div class="total_checkins">
-      <div class="total_checkins_value">{{habit.markedDays.size}}</div>
+      <div class="total_checkins_value">{{currentHabit.markedDays.size}}</div>
       <div class="total_checkins_title">Total checkins</div>
     </div>
     <div class="stickiness">

@@ -8,6 +8,13 @@
   padding: 30px;
 }
 
+.card:hover {
+  opacity: 100%;
+}
+
+.checked {
+  opacity: 50%;
+}
 
 .days {
   border: 1px solid #f1f1f1;

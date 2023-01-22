@@ -1,6 +1,6 @@
 <div class="container">
   <div class="card" *ngFor="let habit of habits">
-    <app-habit (habitDeleted)="onHabitDelete($event)" [habit]="habit"></app-habit>
+    <app-habit (habitDeleted)="onHabitDelete($event)" [currentHabit]="habit"></app-habit>
   </div>
 </div>
 

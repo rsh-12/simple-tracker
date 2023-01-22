@@ -11,7 +11,7 @@ import { MarkCellDialogComponent } from "../mark-cell-dialog/mark-cell-dialog.co
   styleUrls: ['./habit.component.css']
 })
 export class HabitComponent implements OnInit {
-  @Input() habit!: Habit;
+  @Input() currentHabit!: Habit;
   @Output() habitDeleted = new EventEmitter<Habit>();
 
   months: string[];
@@ -28,7 +28,7 @@ export class HabitComponent implements OnInit {
   }
 
   private fillCells() {
-    this.habit.markedDays.forEach(markedDay => this.cells.set(markedDay, true));
+    this.currentHabit.markedDays.forEach(markedDay => this.cells.set(markedDay, true));
   }
 
   delete($event: MouseEvent, habit: Habit) {
@@ -45,16 +45,36 @@ export class HabitComponent implements OnInit {
 
   private handleDialogOpenEvent(cell: KeyValue<string, boolean>) {
     return this.dialogRef.open(MarkCellDialogComponent, {
-        data: {cell, habit: this.habit}
+        data: {cell, habit: this.currentHabit}
       }
     );
   }
 
-  private handleDialogCloseEvent(dialogRef: MatDialogRef<MarkCellDialogComponent, any>) {
+  private handleDialogCloseEvent(dialogRef: MatDialogRef<MarkCellDialogComponent>) {
     dialogRef.afterClosed().subscribe(result => {
       if (result instanceof Date) {
         UtilService.toFormattedUTCDate(result);
       }
     });
+  }
+
+  isCurrentDateMarked() {
+    return this.cells.get(UtilService.NOW) === true;
+  }
+
+  onCheckboxChange(isChecked: boolean) {
+    isChecked
+      ? this.markDate(UtilService.NOW)
+      : this.unmarkDate(UtilService.NOW);
+  }
+
+  private unmarkDate(dateAsKey: string) {
+    this.currentHabit.markedDays.delete(dateAsKey);
+    this.cells.set(dateAsKey, false);
+  }
+
+  private markDate(dateAsKey: string) {
+    this.currentHabit.markedDays.add(dateAsKey);
+    this.cells.set(dateAsKey, true);
   }
 }
