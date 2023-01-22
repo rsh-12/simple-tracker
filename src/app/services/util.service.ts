@@ -14,6 +14,7 @@ const LAST_147_DAYS = 147;
 export class UtilService {
   private static cachedLastFiveMonths: string[];
   private static cachedCells: Map<string, boolean>;
+   static NOW = UtilService.toFormattedDate(new Date());
 
   static lastFiveMonths(): string[] {
     if (this.cachedLastFiveMonths) {
