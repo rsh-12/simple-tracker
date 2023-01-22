@@ -33,7 +33,7 @@ const mockHabits: Habit[] = [
       'enim ex excepturi expedita illum in iste iure maiores molestiae omnis pariatur placeat praesentium quaerat ' +
       'quidem quos recusandae rem sequi sit tempore temporibus vel veniam veritatis vitae, voluptatem. ' +
       'Ex magnam magni odit possimus repudiandae, similique tempora ut?',
-    markedDays: new Set<string>(['2023-01-20', '2023-01-19', '2023-01-21'])
+    markedDays: new Set<string>(['2023-01-20', '2023-01-19', '2023-01-22'])
   },
 ]
 
@@ -41,7 +41,7 @@ const mockHabits: Habit[] = [
   providedIn: 'root'
 })
 export class MockHabitService {
-  habits: Habit[] = mockHabits.slice(0, 4);
+  habits: Habit[] = mockHabits.slice(0, 5);
 
   getAll(): Habit[] {
     return this.habits;
