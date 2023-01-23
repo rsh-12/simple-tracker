@@ -14,8 +14,8 @@
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
   <button
+    [mat-dialog-close]="cell"
     cdkFocusInitial
-    mat-raised-button color="{{cell.isMarked ? 'warn' : 'primary'}}"
-    (click)="onClick()">
+    mat-raised-button color="{{cell.isMarked ? 'warn' : 'primary'}}">
     {{cell.isMarked ? 'Unmark' : 'Mark'}}</button>
 </div>

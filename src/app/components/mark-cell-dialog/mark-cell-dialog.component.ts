@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { Habit } from "../../models/habit";
 import { KeyValue } from "@angular/common";
 import { UtilService } from "../../services/util.service";
+import { Cell } from "../../models/cell";
 
 interface Data {
   cell: KeyValue<string, boolean>,
@@ -16,13 +17,10 @@ interface Data {
 })
 export class MarkCellDialogComponent {
   minDate: Date;
-  maxDate: Date;
 
+  maxDate: Date;
   currentHabit: Habit;
-  cell: {
-    date: string,
-    isMarked: boolean
-  }
+  cell: Cell;
 
   constructor(public dialogRef: MatDialogRef<MarkCellDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Data) {
@@ -38,12 +36,11 @@ export class MarkCellDialogComponent {
     this.dialogRef.close();
   }
 
-  onClick() {
-    this.dialogRef.close();
-  }
-
   onDateChanged() {
-    const formattedUTCDate = UtilService.toFormattedUTCDate(new Date(this.cell.date));
-    this.cell.isMarked = this.currentHabit.markedDays.has(formattedUTCDate);
+    // input from the DatePicker must be formatted
+    if (this.cell.date instanceof Date) {
+      this.cell.date = UtilService.toFormattedUTCDate(new Date(this.cell.date));
+    }
+    this.cell.isMarked = this.currentHabit.markedDays.has(this.cell.date);
   }
 }
