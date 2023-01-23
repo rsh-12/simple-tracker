@@ -4,6 +4,8 @@ import { UtilService } from "../../services/util.service";
 import { KeyValue } from "@angular/common";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MarkCellDialogComponent } from "../mark-cell-dialog/mark-cell-dialog.component";
+import { Cell } from "../../models/cell";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-habit',
@@ -18,7 +20,8 @@ export class HabitComponent implements OnInit {
   cells: Map<string, boolean>;
   date?: Date;
 
-  constructor(public dialogRef: MatDialog) {
+  constructor(public dialogRef: MatDialog,
+              private snackBar: MatSnackBar) {
     this.months = UtilService.lastFiveMonths();
     this.cells = UtilService.emptyCells();
   }
@@ -51,11 +54,23 @@ export class HabitComponent implements OnInit {
   }
 
   private handleDialogCloseEvent(dialogRef: MatDialogRef<MarkCellDialogComponent>) {
-    dialogRef.afterClosed().subscribe(result => {
-      if (result instanceof Date) {
-        UtilService.toFormattedUTCDate(result);
+    dialogRef.afterClosed().subscribe((cell: Cell) => {
+      if (cell) {
+        this.updateCell(cell);
       }
     });
+  }
+
+  private updateCell(cell: Cell) {
+    if (cell.date instanceof Date) {
+      this.snackBar.open('Date format error');
+      return;
+    }
+
+    this.cells.set(cell.date, !cell.isMarked);
+    if (!cell.isMarked) {
+      this.snackBar.open('Hooray!', 'Close');
+    }
   }
 
   isCurrentDateMarked() {
@@ -76,5 +91,7 @@ export class HabitComponent implements OnInit {
   private markDate(dateAsKey: string) {
     this.currentHabit.markedDays.add(dateAsKey);
     this.cells.set(dateAsKey, true);
+    this.snackBar.open('Hooray!', 'Close');
   }
+
 }
