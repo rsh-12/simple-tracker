@@ -35,10 +35,9 @@ export class HabitComponent implements OnInit {
   }
 
   delete($event: MouseEvent, habit: Habit) {
-    if (!habit.key) {
-      return;
+      if (confirm('Are you sure you want to delete this card?')) {
+        this.habitDeleted.emit(habit);
     }
-    this.habitDeleted.emit(habit);
   }
 
   onCellClicked($event: MouseEvent, cell: KeyValue<string, boolean>) {

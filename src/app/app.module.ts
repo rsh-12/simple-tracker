@@ -19,30 +19,34 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatButtonModule } from "@angular/material/button";
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { HeaderComponent } from './components/header/header.component';
+import { MatToolbarModule } from "@angular/material/toolbar";
 
 @NgModule({
   declarations: [
     AppComponent,
     HabitsListComponent,
     HabitComponent,
-    MarkCellDialogComponent
+    MarkCellDialogComponent,
+    HeaderComponent
   ],
-    imports: [
-        BrowserModule,
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFireDatabaseModule,
-        BrowserAnimationsModule,
-        MatIconModule,
-        MatMenuModule,
-        MatInputModule,
-        FormsModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatDialogModule,
-        MatButtonModule,
-        MatSnackBarModule,
-        MatCheckboxModule,
-    ],
+  imports: [
+    BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatMenuModule,
+    MatInputModule,
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+  ],
   providers: [
     {provide: MatNativeDateModule, useValue: {useUtc: true}},
     {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},

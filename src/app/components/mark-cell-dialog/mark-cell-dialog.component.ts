@@ -17,13 +17,11 @@ interface Data {
 })
 export class MarkCellDialogComponent {
   minDate: Date;
-
   maxDate: Date;
   currentHabit: Habit;
   cell: Cell;
 
-  constructor(public dialogRef: MatDialogRef<MarkCellDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Data) {
+  constructor(public dialogRef: MatDialogRef<MarkCellDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: Data) {
     this.currentHabit = data.habit;
     this.cell = {date: this.data.cell.key, isMarked: this.data.cell.value};
 
@@ -42,5 +40,11 @@ export class MarkCellDialogComponent {
       this.cell.date = UtilService.toFormattedUTCDate(new Date(this.cell.date));
     }
     this.cell.isMarked = this.currentHabit.markedDays.has(this.cell.date);
+
+    if (this.cell.isMarked) {
+      this.currentHabit.markedDays.add(this.cell.date);
+    } else {
+      this.currentHabit.markedDays.delete(this.cell.date);
+    }
   }
 }
