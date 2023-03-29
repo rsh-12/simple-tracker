@@ -15,11 +15,10 @@ export class HabitsListComponent {
   }
 
   onHabitDelete(candidate: Habit) {
-    if (!candidate.key) {
-      return;
+    if (candidate.key) {
+      this.habitService.deleteByKey(candidate.key);
+      this.habits = this.habits.filter(habit => habit.key !== candidate.key);
     }
-    this.habitService.deleteByKey(candidate.key);
-    this.habits = this.habits.filter(habit => habit.key !== candidate.key);
   }
 
 }

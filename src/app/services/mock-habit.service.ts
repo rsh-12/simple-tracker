@@ -4,31 +4,31 @@ import { Habit } from "../models/habit";
 const mockHabits: Habit[] = [
   {
     key: '1',
-    title: 'Lorem ipsum dolor.',
+    title: '1. Lorem ipsum dolor.',
     description: 'Lorem ipsum dolor sit amet.',
     markedDays: new Set<string>(['2023-01-01', '2023-01-03', '2023-01-06'])
   },
   {
     key: '2',
-    title: 'Lorem.',
+    title: '2. Lorem.',
     description: 'Lorem ipsum dolor sit amet, consectetur.',
     markedDays: new Set<string>(['2022-12-31', '2023-01-02', '2023-01-07'])
   },
   {
     key: '3',
-    title: 'Lorem ipsum.',
+    title: '3. Lorem ipsum.',
     description: 'Lorem ipsum dolor.',
     markedDays: new Set<string>(['2022-12-01', '2023-01-05', '2023-01-10'])
   },
   {
     key: '4',
-    title: 'Lorem ipsum. Dolor color.',
+    title: '4. Lorem ipsum. Dolor color.',
     description: 'Lorem ipsum dolor. Dolor.',
     markedDays: new Set<string>(['2022-12-09', '2023-01-15', '2023-01-21'])
   },
   {
     key: '5',
-    title: 'Lorem ipsum dolor sit amet.',
+    title: '5. Lorem ipsum dolor sit amet.',
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam, asperiores assumenda dolorum ' +
       'enim ex excepturi expedita illum in iste iure maiores molestiae omnis pariatur placeat praesentium quaerat ' +
       'quidem quos recusandae rem sequi sit tempore temporibus vel veniam veritatis vitae, voluptatem. ' +
