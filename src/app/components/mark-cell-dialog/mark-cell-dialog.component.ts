@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { Habit } from "../../models/habit";
-import { KeyValue } from "@angular/common";
-import { UtilService } from "../../services/util.service";
-import { Cell } from "../../models/cell";
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Habit } from '../../models/habit';
+import { KeyValue } from '@angular/common';
+import { LAST_147_DAYS, UtilService } from '../../services/util.service';
+import { Cell } from '../../models/cell';
 
 interface Data {
   cell: KeyValue<string, boolean>,
@@ -25,8 +25,8 @@ export class MarkCellDialogComponent {
     this.currentHabit = data.habit;
     this.cell = {date: this.data.cell.key, isMarked: this.data.cell.value};
 
-    const currentYear = new Date().getFullYear();
-    this.minDate = new Date(currentYear, -5, 1);
+    this.minDate = new Date();
+    this.minDate.setDate(this.minDate.getDate() - LAST_147_DAYS + 7);
     this.maxDate = new Date();
   }
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { MockHabitService } from "../../services/mock-habit.service";
-import { Habit } from "../../models/habit";
+import { MockHabitService } from '../../services/mock-habit.service';
+import { Habit } from '../../models/habit';
 
 @Component({
   selector: 'app-habits-list',

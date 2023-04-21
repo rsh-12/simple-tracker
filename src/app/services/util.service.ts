@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 
 const monthNames = [
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
 ];
 
 // Optimal number of days for CSS cell styles
-const LAST_147_DAYS = 147;
+export const LAST_147_DAYS = 147;
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ const LAST_147_DAYS = 147;
 export class UtilService {
   private static cachedLastFiveMonths: string[];
   private static cachedCells: Map<string, boolean>;
-   static NOW = UtilService.toFormattedDate(new Date());
+  static NOW = UtilService.toFormattedDate(new Date());
 
   static lastFiveMonths(): string[] {
     if (this.cachedLastFiveMonths) {
@@ -61,7 +61,7 @@ export class UtilService {
   }
 
   static toFormattedUTCDate(date: Date) {
-    const localDate = new Date(date + " UTC");
+    const localDate = new Date(date + ' UTC');
     return this.toFormattedDate(localDate);
   }
 

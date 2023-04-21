@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Habit } from "../models/habit";
+import { Habit } from '../models/habit';
+import { CommonService } from './common.service';
 
 const mockHabits: Habit[] = [
   {
@@ -35,23 +36,36 @@ const mockHabits: Habit[] = [
       'Ex magnam magni odit possimus repudiandae, similique tempora ut?',
     markedDays: new Set<string>(['2023-01-20', '2023-01-19', '2023-01-22'])
   },
-]
+];
 
 @Injectable({
   providedIn: 'root'
 })
-export class MockHabitService {
-  habits: Habit[] = mockHabits.slice(0, 5);
+export class MockHabitService implements CommonService<Habit> {
+  habits: Habit[] = mockHabits;
+
+  save(t: Habit): void | Habit | undefined {
+    throw new Error('Method not implemented.');
+  }
 
   getAll(): Habit[] {
     return this.habits;
   }
 
   deleteByKey(key: string) {
-    this.habits.filter(habit => habit.key != key);
+    this.habits = this.habits.filter(habit => habit.key != key);
   }
 
   update(habit: Habit) {
-    console.log(`Save changes: ${habit.key}`)
+    console.log(`Save changes: ${habit.key}`);
   }
+
+  deleteById(id: string | number): void {
+    throw new Error('Not implemented');
+  }
+
+  getOne(): Habit {
+    throw new Error('Not implemented');
+  }
+
 }

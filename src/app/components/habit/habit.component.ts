@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Habit } from "../../models/habit";
-import { UtilService } from "../../services/util.service";
-import { KeyValue } from "@angular/common";
-import { MatDialog, MatDialogRef } from "@angular/material/dialog";
-import { MarkCellDialogComponent } from "../mark-cell-dialog/mark-cell-dialog.component";
-import { Cell } from "../../models/cell";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { Habit } from '../../models/habit';
+import { UtilService } from '../../services/util.service';
+import { KeyValue } from '@angular/common';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MarkCellDialogComponent } from '../mark-cell-dialog/mark-cell-dialog.component';
+import { Cell } from '../../models/cell';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-habit',
@@ -35,8 +35,8 @@ export class HabitComponent implements OnInit {
   }
 
   delete($event: MouseEvent, habit: Habit) {
-      if (confirm('Are you sure you want to delete this card?')) {
-        this.habitDeleted.emit(habit);
+    if (confirm('Are you sure you want to delete this card?')) {
+      this.habitDeleted.emit(habit);
     }
   }
 
